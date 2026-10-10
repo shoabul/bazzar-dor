@@ -1,5 +1,5 @@
 
-const BASE_URL = (process.env.NEXT_PUBLIC_API_BASE_URL || "").replace(/\/$/, "");
+const BASE_URL = (process.env.API_BASE_URL || "").replace(/\/$/, "");
 const API_PREFIX = "/api/bazardor";
 
 async function request(path, { params, revalidate = 60, ...options } = {}) {

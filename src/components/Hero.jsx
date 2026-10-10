@@ -39,11 +39,15 @@ export default function Hero() {
                     </p>
 
                     <Link
-                        href="#all-products"
-                        className="mt-6 inline-block rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-800"
-                    >
-                        সব পণ্য দেখুন
-                    </Link>
+    href="#all-products"
+    onClick={(e) => {
+        e.preventDefault();
+        document.getElementById("all-products")?.scrollIntoView({ behavior: "smooth" });
+    }}
+    className="mt-6 inline-block rounded-lg bg-green-700 px-5 py-2.5 text-sm font-semibold text-white shadow hover:bg-green-800"
+>
+    সব পণ্য দেখুন
+</Link>
                 </div>
 
                 <div className="hidden shrink-0 pr-4 md:block">

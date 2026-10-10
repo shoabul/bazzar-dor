@@ -1,13 +1,19 @@
-
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
+import { authClient } from "@/lib/auth-client";
 
 export default function Navbar({ categories = [], user = null }) {
     const pathname = usePathname();
+    const router = useRouter();
+
+    const handleSignOut = async () => {
+        await authClient.signOut();
+        router.push("/");
+        router.refresh();
+    };
 
     const [today, setToday] = useState("");
 
@@ -74,6 +80,14 @@ export default function Navbar({ categories = [], user = null }) {
                             >
                                 আমার প্রোফাইল
                             </Link>
+
+                            <button
+                                type="button"
+                                onClick={handleSignOut}
+                                className="block w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                            >
+                                সাইন আউট
+                            </button>
                         </div>
                     </div>
                 ) : (
@@ -104,10 +118,11 @@ export default function Navbar({ categories = [], user = null }) {
                             <Link
                                 key={cat.id}
                                 href={`/category/${cat.slug}`}
-                                className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition ${active
+                                className={`flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition ${
+                                    active
                                         ? "bg-green-700 text-white shadow"
                                         : "text-gray-600 hover:bg-gray-100"
-                                    }`}
+                                }`}
                             >
                                 <span>{cat.icon}</span>
                                 <span>{cat.nameBn}</span>
