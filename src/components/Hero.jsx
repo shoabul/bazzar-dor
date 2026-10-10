@@ -1,15 +1,24 @@
+
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-
 export default function Hero() {
-    const today = new Date().toLocaleDateString("bn-BD", {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-        timeZone: "Asia/Dhaka",
-    });
+    const [today, setToday] = useState("");
+
+    useEffect(() => {
+        setToday(
+            new Intl.DateTimeFormat("bn-BD", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: "Asia/Dhaka",
+            }).format(new Date())
+        );
+    }, []);
 
     return (
         <section className="mx-auto mt-6 max-w-6xl px-4">
