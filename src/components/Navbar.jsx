@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
+import Image from "next/image";
 
 function NavbarContent({ categories = [], user = null }) {
     const pathname = usePathname();
@@ -33,9 +34,15 @@ function NavbarContent({ categories = [], user = null }) {
         <header className="border-b border-gray-200 bg-white/80 backdrop-blur">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
                 <Link href="/" className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-700 text-lg text-white shadow">
-                        🛒
-                    </span>
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-700 shadow">
+    <Image
+        src="/logo-icon.png"
+        alt="Bazar Dor"
+        width={24}
+        height={24}
+        className="h-6 w-6 object-contain"
+    />
+</span>
 
                     <span className="leading-tight">
                         <span className="block text-base font-bold text-gray-900">
