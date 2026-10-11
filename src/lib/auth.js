@@ -3,13 +3,11 @@ import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { nextCookies } from "better-auth/next-js";
 import { MongoClient } from "mongodb";
 
-// dev এ hot reload হলে বারবার নতুন connection না খুলতে global এ রাখা হলো
 const globalForMongo = globalThis;
 const client = globalForMongo._mongoClient ?? new MongoClient(process.env.MONGODB_URI);
 if (process.env.NODE_ENV !== "production") globalForMongo._mongoClient = client;
 
 const db = client.db(process.env.MONGODB_DB);
-
 
 const socialProviders = {};
 if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {

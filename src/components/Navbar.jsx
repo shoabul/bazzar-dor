@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 
-export default function Navbar({ categories = [], user = null }) {
+function NavbarContent({ categories = [], user = null }) {
     const pathname = usePathname();
     const router = useRouter();
 
@@ -132,5 +132,13 @@ export default function Navbar({ categories = [], user = null }) {
                 </div>
             </nav>
         </header>
+    );
+}
+
+export default function Navbar({ categories = [], user = null }) {
+    return (
+        <Suspense fallback={<div className="h-16" />}>
+            <NavbarContent categories={categories} user={user} />
+        </Suspense>
     );
 }
