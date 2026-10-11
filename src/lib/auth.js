@@ -27,5 +27,11 @@ export const auth = betterAuth({
   database: mongodbAdapter(db),
   emailAndPassword: { enabled: true },
   socialProviders,
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60,
+    },
+  },
   plugins: [nextCookies()],
 });
