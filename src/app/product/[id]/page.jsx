@@ -47,6 +47,7 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function ProductPage({ params }) {
+  
   const { id } = await params;
   const product = normalizeProduct(await api.getProduct(id), id);
 

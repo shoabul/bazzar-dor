@@ -3,7 +3,9 @@ import PriceUpSection from "@/components/PriceUpSection";
 import PriceDownSection from "@/components/PriceDownSection";
 import AllProducts from "@/components/AllProducts";
 
-export default function Home() {
+
+export default async function Home() {
+    
   return (
     <>
       <Hero />

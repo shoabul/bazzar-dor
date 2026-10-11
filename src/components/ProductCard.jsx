@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Bar } from "./Skeleton";
 
 const UNIT_BN = { kg: "কেজি", litre: "লিটার", dozen: "ডজন", piece: "পিস" };
 
@@ -43,5 +44,25 @@ export default function ProductCard({ product }) {
         </span>
       </div>
     </Link>
+  );
+}
+
+export function ProductCardSkeleton() {
+  return (
+    <div className="block rounded-2xl border border-gray-200 bg-white p-4">
+      <div className="flex items-center gap-3">
+        <Bar className="h-10 w-10 shrink-0 rounded-xl" />
+        <div className="space-y-1.5">
+          <Bar className="h-4 w-24" />
+          <Bar className="h-3 w-14" />
+        </div>
+      </div>
+
+      <Bar className="mt-4 h-3 w-16" />
+      <div className="mt-0.5 flex items-center justify-between">
+        <Bar className="h-7 w-24" />
+        <Bar className="ml-auto h-6 w-14 rounded-full" />
+      </div>
+    </div>
   );
 }
