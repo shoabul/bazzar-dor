@@ -65,11 +65,13 @@ function NavbarContent({ categories = [], user = null }) {
                             className="flex items-center gap-2 rounded-full px-2 py-1 text-sm font-medium text-gray-800 hover:bg-gray-100"
                         >
                             {user.image ? (
-                                <img
-                                    src={user.image}
-                                    alt={user.name || "User"}
-                                    className="h-8 w-8 rounded-full object-cover"
-                                />
+                                <Image
+    src={user.image}
+    alt={user.name || "User"}
+    width={32}
+    height={32}
+    className="h-8 w-8 rounded-full object-cover"
+/>
                             ) : (
                                 <span className="flex h-8 w-8 items-center justify-center rounded-full bg-green-700 text-white">
                                     {user.name?.[0]}

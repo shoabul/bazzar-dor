@@ -1,14 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { authClient } from "@/lib/auth-client";
+import toast from "react-hot-toast";
+import { authClient, authErrorBn } from "@/lib/auth-client";
 
 export default function SocialButtons() {
   const [loading, setLoading] = useState("");
 
   const handle = async (provider) => {
-    setLoading(provider);
-    await authClient.signIn.social({ provider, callbackURL: "/" });
+    try {
+      setLoading(provider);
+      const { error } = await authClient.signIn.social({ provider, callbackURL: "/" });
+      if (error) {
+        toast.error(authErrorBn(error));
+        setLoading("");
+      }
+      // সফল হলে browser নিজেই provider এর page এ redirect করবে
+    } catch (e) {
+      toast.error(authErrorBn(e));
+      setLoading("");
+    }
   };
 
   const btn =
